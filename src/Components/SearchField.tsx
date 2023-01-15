@@ -5,7 +5,7 @@ const SearchField: React.FC = () => {
   return (
     <Paper
       variant="outlined"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+      sx={{ display: 'flex', alignItems: 'center', maxWidth: 600 }}
     >
       <IconButton disabled sx={{ px: '20px', py: '15px'}}>
         <SvgIcon sx={{ fontSize: 20 }}>

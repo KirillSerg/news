@@ -10,7 +10,7 @@ interface ArticleCardProps {
 
 const ContentCard: React.FC<ArticleCardProps> = ({...props}) => {
   return (
-    <Card sx={{ minWidth: 345 }}>
+    <Card sx={{ maxWidth: 400, minHeight: 530}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -28,6 +28,7 @@ const ContentCard: React.FC<ArticleCardProps> = ({...props}) => {
           <Typography variant="body2" color="text.secondary">
             {props.summary}
           </Typography>
+          <a href="#">Read more &#8594;</a>
         </CardContent>
       </CardActionArea>
       {/* <CardActions>

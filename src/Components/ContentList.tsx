@@ -38,7 +38,7 @@ const ContentList: React.FC = () => {
   }, [])
 
   return (
-    <div className='main' style={{ display: "flex" }}>
+    <div className='main' style={{ display: "flex", flexWrap: "wrap", gap: 45 }}>
       {newsData.map((news:News) => {
         return (<ContentCard key={news.id} title={news.title} summary={news.summary} imageUrl={news.imageUrl} publishedAt={news.publishedAt} />)
       })}
