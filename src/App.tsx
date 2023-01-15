@@ -6,7 +6,7 @@ import SearchBar from './Components/SearchBar';
 
 const App: React.FC = () => {
   return (
-    <Paper sx={{ p: "75px 50px" }}>
+    <Paper sx={{ p: "50px 75px 0 75px"}}>
       <SearchBar />
       <ContentList />
     </Paper>

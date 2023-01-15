@@ -5,7 +5,7 @@ const SearchField: React.FC = () => {
   return (
     <Paper
       variant="outlined"
-      sx={{ display: 'flex', alignItems: 'center', maxWidth: 600 }}
+      sx={{ display: 'flex', alignItems: 'center', maxWidth: 600, m: "10px 0 40px 0" }}
     >
       <IconButton disabled sx={{ px: '20px', py: '15px'}}>
         <SvgIcon sx={{ fontSize: 20 }}>
@@ -13,7 +13,6 @@ const SearchField: React.FC = () => {
         </SvgIcon>
       </IconButton>
       <InputBase
-        sx={{ ml: 1, flex: 1 }}
         placeholder="Search..."
       />
     </Paper>

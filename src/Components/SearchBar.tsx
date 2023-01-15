@@ -1,3 +1,4 @@
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 import SearchField from './SearchField';
 
@@ -5,10 +6,10 @@ const SearchBar: React.FC = () => {
   
   return (
     <>
-      <h1>Filter by keywords</h1>
+      <Typography>Filter by keywords</Typography>
       <SearchField />
-      <p>Results: { }</p>
-      <div style={{ borderTop: "1px solid lightgrey"}}/>
+      <Typography>Results: { }</Typography>
+      <Box style={{ borderTop: "1px solid lightgrey"}}/>
     </>
   );
 }

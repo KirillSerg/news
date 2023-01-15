@@ -25,7 +25,7 @@ interface News {
 }
 
 const ContentList: React.FC = () => {
-  const [newsData, setNewsData] = useState([])
+  const [newsData, setNewsData] = useState<News[]>([])
 
   function getDataNews() {
     return fetch("https://api.spaceflightnewsapi.net/v3/articles/?_limit=100")
@@ -38,7 +38,7 @@ const ContentList: React.FC = () => {
   }, [])
 
   return (
-    <div className='main' style={{ display: "flex", flexWrap: "wrap", gap: 45 }}>
+    <div className='main' style={{ display: "flex", flexWrap: "wrap", gap: 45, marginTop: 45 }}>
       {newsData.map((news:News) => {
         return (<ContentCard key={news.id} title={news.title} summary={news.summary} imageUrl={news.imageUrl} publishedAt={news.publishedAt} />)
       })}
