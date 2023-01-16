@@ -1,28 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { News } from '../types';
 import ContentCard from './ContentCard';
-
-interface News {
-  id: 0,
-  featured: false,
-  title: string,
-  url: string,
-  imageUrl: string,
-  newsSite: string,
-  summary: string,
-  publishedAt: string,
-  launches: [
-    {
-      id: string,
-      provider: string
-    }
-  ],
-  events: [
-    {
-      id: string,
-      provider: string
-    }
-  ]
-}
 
 const ContentList: React.FC = () => {
   const [newsData, setNewsData] = useState<News[]>([])
@@ -40,7 +18,7 @@ const ContentList: React.FC = () => {
   return (
     <div className='main' style={{ display: "flex", flexWrap: "wrap", gap: 45, marginTop: 45 }}>
       {newsData.map((news:News) => {
-        return (<ContentCard key={news.id} title={news.title} summary={news.summary} imageUrl={news.imageUrl} publishedAt={news.publishedAt} />)
+        return (<ContentCard key={news.id} {...news} />)
       })}
     </div>
   );

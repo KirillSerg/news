@@ -13,6 +13,7 @@ const SearchField: React.FC = () => {
         </SvgIcon>
       </IconButton>
       <InputBase
+        fullWidth
         placeholder="Search..."
       />
     </Paper>

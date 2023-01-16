@@ -1,15 +1,16 @@
 import React from 'react';
-import './App.css';
-import { Paper } from '@mui/material';
-import ContentList from './Components/ContentList';
-import SearchBar from './Components/SearchBar';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import ContentPage from './pages/ContentPage';
+import HomePage from './pages/HomePage';
 
 const App: React.FC = () => {
   return (
-    <Paper sx={{ p: "50px 75px 0 75px"}}>
-      <SearchBar />
-      <ContentList />
-    </Paper>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/content/:id" element={<ContentPage />} />
+      </Routes>
+    </Router>
   );
 }
 

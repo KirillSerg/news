@@ -1,41 +1,33 @@
-import {Card, CardActionArea, CardMedia, CardContent, Typography, Link} from '@mui/material';
+import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import React from 'react';
+import  {News}  from '../types';
 
-interface ArticleCardProps {
-  title: string;
-  summary: string;
-  imageUrl: string;
-  publishedAt: string;
-}
-
-const ContentCard: React.FC<ArticleCardProps> = ({...props}) => {
+const ContentCard: React.FC<News> = ({imageUrl, publishedAt, title, summary, id}) => {
   return (
     <Card sx={{ maxWidth: 400, minHeight: 530}}>
-      <CardActionArea>
+      <Link to={`/content/${id}`} style={{textDecoration:"none", color: "#363636"}}>
         <CardMedia
           component="img"
           height="217"
-          image={props.imageUrl}
+          image={imageUrl}
           alt="picture"
         />
         <CardContent sx={{ height: 313, p: "25px", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-          <Typography variant="subtitle2" component="div">
-            {props.publishedAt}
+          <Typography variant="subtitle2" component="div" sx={{opacity: "0.6"}}>
+            {publishedAt}
           </Typography>
-          <Typography variant="h5" component="div">
-            {props.title}
+          <Typography variant="h5" component="div" sx={{ height: 58, overflow: "hidden", textOverflow: "ellipsis" }}>
+            {title}
           </Typography>
-          <Typography variant="body2" component="div" color="text.secondary">
-            {props.summary}
+          <Typography variant="body2" component="div" color="text.secondary" sx={{ height: 96, overflow: "hidden", textOverflow: "ellipsis" }}>
+            {summary}
           </Typography>
-          <Link href="#">Read more &#8594;</Link>
         </CardContent>
-      </CardActionArea>
-      {/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions> */}
+      </Link>
+      <Link to={`/content/${id}`}>
+        Read more &#8594;
+      </Link>
     </Card>
   );
 }
