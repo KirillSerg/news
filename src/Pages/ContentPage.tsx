@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import React from 'react';
 // import {useParams} from 'react-router-dom'
 import Content from '../components/Content';
@@ -15,7 +16,9 @@ const ContentPage: React.FC = () => {
   // }, [match.id, newsData.id]);
 
   return (
-    <Content />
+    <Box sx={{position: "relative"}}>
+      <Content />
+    </Box>
   );
 }
 

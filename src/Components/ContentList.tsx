@@ -14,7 +14,7 @@ const ContentList: React.FC = () => {
   useEffect(() => {
     getDataNews()
   }, [])
-
+console.log(newsData)
   return (
     <div className='main' style={{ display: "flex", flexWrap: "wrap", gap: 45, marginTop: 45 }}>
       {newsData.map((news:News) => {
