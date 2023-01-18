@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import { Marker } from "react-mark.js";
 import React from 'react';
 import { News } from '../types';
+import { useAppSelector } from '../redux/hooks';
 
-const ContentCard: React.FC<News> = ({imageUrl, publishedAt, title, summary, id}) => {
+const ContentCard: React.FC<News> = ({ imageUrl, publishedAt, title, summary, id }) => {
+  
+  const { searchText } = useAppSelector((state) => state.searchTxtReducer)
+
   return (
     <Card sx={{ maxWidth: 400, minHeight: 530}}>
       <CardMedia
@@ -17,12 +21,12 @@ const ContentCard: React.FC<News> = ({imageUrl, publishedAt, title, summary, id}
         <Typography variant="subtitle2" component="div" sx={{opacity: "0.6"}}>
           {publishedAt}
         </Typography>
-        <Marker mark="global">
+        <Marker mark={searchText}>
           <Typography variant="h5" component="div" sx={{ height: 58, overflow: "hidden", textOverflow: "ellipsis" }}>
             {title}
           </Typography>
         </Marker>
-        <Marker mark="global">
+        <Marker mark={searchText}>
           <Typography variant="body2" component="div" color="text.secondary" sx={{ height: 96, overflow: "hidden", textOverflow: "ellipsis" }}>
             {summary}
           </Typography>

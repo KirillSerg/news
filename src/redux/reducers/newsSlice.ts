@@ -4,12 +4,10 @@ import { News } from '../../types'
 
 interface NewsStore {
   news: News[];
-  isLoading: boolean;
 }
 
 const initialState: NewsStore = {
-  news: [],
-  isLoading: false
+  news: []
 }
 
 export const newsSlice = createSlice({

@@ -1,7 +1,19 @@
 import React from 'react';
 import { IconButton, Paper, InputBase, SvgIcon } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { searchTxtSlice } from '../redux/reducers/searchTxtSlice';
 
 const SearchField: React.FC = () => {
+
+  const {setSearchTxt} = searchTxtSlice.actions
+  const dispatch = useAppDispatch()
+
+  const { searchText } = useAppSelector((state) => state.searchTxtReducer)
+
+  const setSearchTxtHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchTxt(e.target.value))
+  }
+
   return (
     <Paper
       variant="outlined"
@@ -15,6 +27,8 @@ const SearchField: React.FC = () => {
       <InputBase
         fullWidth
         placeholder="Search..."
+        onChange={setSearchTxtHandler}
+        value={searchText}
       />
     </Paper>
   );

@@ -7,8 +7,19 @@ import ContentCard from './ContentCard';
 const ContentList: React.FC = () => {
 
   const {fetchAllNews} = newsSlice.actions
-  const { news } = useAppSelector((state) => state.newsReducer)
   const dispatch = useAppDispatch()
+
+  const { news } = useAppSelector((state) => state.newsReducer)
+  const { searchText } = useAppSelector((state) => state.searchTxtReducer)
+
+  let resaltNewsArray
+  if (searchText) {
+    const arrByTitle = news.filter((news) => news.title.includes(searchText))
+    const arrBySummary = news.filter((news) => !news.title.includes(searchText) && news.summary.includes(searchText))
+    resaltNewsArray = arrByTitle.concat(arrBySummary)
+  }
+
+
 
   function getDataNews() {
     return fetch("https://api.spaceflightnewsapi.net/v3/articles/?_limit=100")
@@ -18,13 +29,19 @@ const ContentList: React.FC = () => {
 
   useEffect(() => {
     getDataNews()
+    // eslint-disable-next-line
   }, [])
 
   return (
     <div className='main' style={{ display: "flex", flexWrap: "wrap", gap: 45, marginTop: 45 }}>
-      {news.map((news:News) => {
-        return (<ContentCard key={news.id} {...news} />)
-      })}
+      {resaltNewsArray ?
+        resaltNewsArray.map((news: News) => {
+          return (<ContentCard key={news.id} {...news} />)
+        }) :
+        news.map((news: News) => {
+          return (<ContentCard key={news.id} {...news} />)
+        })
+      }
     </div>
   );
 }
