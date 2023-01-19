@@ -27,7 +27,7 @@ const Content: React.FC<News> = ({imageUrl, title, summary}) => {
             {summary}
         </Typography>
       </Paper>
-      <Button  onClick={()=>{navigate("/")}} size="small" sx={{ color: "#363636", mt: "35px", ml: "93px", textTransform: 'none' }}>
+      <Button  onClick={()=>{navigate("/news")}} size="small" sx={{ color: "#363636", mt: "35px", ml: "93px", textTransform: 'none' }}>
         &#8592; Back to homepage
       </Button>
     </Box>
