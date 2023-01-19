@@ -1,3 +1,4 @@
+import {Typography, Box} from '@mui/material';
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { newsSlice } from '../redux/reducers/newsSlice';
@@ -11,18 +12,20 @@ const ContentList: React.FC = () => {
 
   const { news } = useAppSelector((state) => state.newsReducer)
   const { searchText } = useAppSelector((state) => state.searchTxtReducer)
+  
+  const separetSearchText = searchText.split(" ")
 
-  let resaltNewsArray
+  let filteredNewsList = news
   if (searchText) {
-    const arrByTitle = news.filter((news) => news.title.includes(searchText))
-    const arrBySummary = news.filter((news) => !news.title.includes(searchText) && news.summary.includes(searchText))
-    resaltNewsArray = arrByTitle.concat(arrBySummary)
+    const arrByTitle = news.filter((news) =>
+      separetSearchText.find((search) =>
+        news.title.split(" ").includes(search) || news.summary.split(" ").includes(search)))
+    filteredNewsList = [...arrByTitle]
   }
 
 
-
   function getDataNews() {
-    return fetch("https://api.spaceflightnewsapi.net/v3/articles/?_limit=100")
+    return fetch("https://api.spaceflightnewsapi.net/v3/articles/?_limit=15")
       .then((response) => response.json())
       .then((json) => dispatch(fetchAllNews(json)) );
   }
@@ -33,16 +36,15 @@ const ContentList: React.FC = () => {
   }, [])
 
   return (
-    <div className='main' style={{ display: "flex", flexWrap: "wrap", gap: 45, marginTop: 45 }}>
-      {resaltNewsArray ?
-        resaltNewsArray.map((news: News) => {
+    <>
+      <Typography>Results: {filteredNewsList.length}</Typography>
+      <Box style={{ borderTop: "1px solid lightgrey"}}/>
+      <div className='main' style={{ display: "flex", flexWrap: "wrap", gap: 45, marginTop: 45 }}>
+        {filteredNewsList.map((news: News) => {
           return (<ContentCard key={news.id} {...news} />)
-        }) :
-        news.map((news: News) => {
-          return (<ContentCard key={news.id} {...news} />)
-        })
-      }
-    </div>
+        })}
+      </div>
+    </>
   );
 }
 
